@@ -7,22 +7,24 @@ Y="\e[33m"
 TIMESTAMP= $(date +%F-%H-%M-%S)
 LOGFILE="/tmp/$0-$TIMESTAMP.log"
 echo "script started executed at $TIMESTAMP" &>> $LOGFILE
-VALIDATE(){
-if [ $1 -ne 0 ]
-then
-echo  -e " $R $2.... FAILED $N"
-exit 5
-else
-echo  -e " $G $1.... SUCESS $N"
-fi
+VALIDATE()
+{
+ if [ $1 -ne 0 ]
+    then
+    echo  -e " $R $2.... FAILED $N"
+    exit 5
+    else
+    echo  -e " $G $1.... SUCESS $N"
+ fi
 }
 if [ $id -ne 0 ]
-then
-echo  -e " $R error : please run this script with root access $N"
-exit 5
-else
-echo  -e " $G u r root user $N"
+    then
+    echo -e "$R error : please run this with root access $N "
+    exit 5
+    else
+    echo -e " $G u r root user $N"
 fi
+
 
 cp mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOGFILE
 VALIDATE $? " copied MONGODB"
