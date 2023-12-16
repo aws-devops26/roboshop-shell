@@ -39,6 +39,7 @@ do
  else
     echo -e "$Y mongodb  is already installed....$R SKIPPING $N"
  fi
+done
  VALIDATE $? "installed MONGODB" 
  systemctl enable mongod &>> $LOGFILE
  VALIDATE $? "Enabiling MONGODB"
