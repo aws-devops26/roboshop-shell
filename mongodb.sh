@@ -28,7 +28,17 @@ fi
 
 cp mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOGFILE
 VALIDATE $? " copied MONGODB"
-dnf install mongodb-org -y &>> $LOGFILE
+dnf install mongodb-org  &>> $LOGFILE
+for mongod in $@
+do
+    dnf install mongodb-org -y
+ if [ $? -ne 0 ]
+    then
+    dnf install mongodb-org -y 
+    VALIDATE $? "installation of mongodb "
+ else
+    echo -e "$Y mongodb  is already installed....$R SKIPPING $N"
+ fi
  VALIDATE $? "installed MONGODB" 
  systemctl enable mongod &>> $LOGFILE
  VALIDATE $? "Enabiling MONGODB"
