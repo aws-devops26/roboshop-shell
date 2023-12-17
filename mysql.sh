@@ -20,7 +20,6 @@ VALIDATE()
 if [ $id -ne 0 ]
     then
     echo -e "$R error : please run this with root access $N "
-    exit 5
     else
     echo -e " $G u r root user $N"
 fi
