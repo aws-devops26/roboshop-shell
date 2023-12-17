@@ -36,15 +36,15 @@ if [ $? -ne 0 ]
 fi
  mkdir -p /app 
  VALIDATE $? "app directory created"
- 
+
  curl -L -o /tmp/shipping.zip https://roboshop-builds.s3.amazonaws.com/shipping.zip &>> $LOGFILE
  VALIDATE $? " downloading application code"
  
  cd /app
-VALIDATE $? "moving to app directory"
+ VALIDATE $? "moving to app directory"
 
-mvn clean package  &>> $LOGFILE
-VALIDATE $? "installing dependencies"
+ mvn clean package  &>> $LOGFILE
+ VALIDATE $? "installing dependencies"
 
  mv target/shipping-1.0.jar shipping.jar &>> $LOGFILE
 VALIDATE $? "renaming jar file"
