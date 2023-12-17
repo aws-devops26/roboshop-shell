@@ -30,9 +30,9 @@ cp /home/centos/roboshop-shell/mysql.repo  /etc/yum.repos.d/mysql.repo  &>> $LOG
 VALIDATE $? "copied my sql repo"
 dnf install mysql-community-server -y &>> $LOGFILE
 VALIDATE $? "installing my sql community server"
-systemctl enable mysql &>> $LOGFILE
+systemctl enable mysqld  &>> $LOGFILE
 VALIDATE $? "Enabiling mysql"
-systemctl start mysql &>> $LOGFILE
+systemctl start mysqld  &>> $LOGFILE
 VALIDATE $? "starting mysql" 
 mysql_secure_installation --set-root-pass RoboShop@1 &>> $LOGFILE
 VALIDATE $? "mysql instalation and root password"
