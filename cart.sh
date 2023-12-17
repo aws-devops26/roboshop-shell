@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 id=$(id -u)
 R="\e[31m"
 N="\e[0m"
@@ -40,7 +40,7 @@ if [ $? -ne 0 ]
 fi
  mkdir -p /app 
  VALIDATE $? "app directory created"
- curl -L -o /tmp/cart.zip https://roboshop-builds.s3.amazonaws.com/cart.zip
+ curl -L -o /tmp/cart.zip https://roboshop-builds.s3.amazonaws.com/cart.zip &>>$LOGFILE
  VALIDATE $? "downloading cart  application"
  cd /app 
 unzip -o /tmp/cart.zip  &>>$LOGFILE
