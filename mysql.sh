@@ -24,17 +24,17 @@ if [ $id -ne 0 ]
     else
     echo -e " $G u r root user $N"
 fi
-dnf module disable mysql -y  &>>$LOGFILE
+dnf module disable mysql -y  &>> $LOGFILE
 VALIDATE $? " disable mysql current version"
-cp /home/centos/roboshop-shell/mysql.repo  /etc/yum.repos.d/mysql.repo &>>$LOGFILE
+cp /home/centos/roboshop-shell/mysql.repo  /etc/yum.repos.d/mysql.repo &>> $LOGFILE
 VALIDATE $? "copied my sql repo"
-dnf install mysql-community-server -y &>>$LOGFILE
+dnf install mysql-community-server -y &>> $LOGFILE
 VALIDATE $? "installing my sql community server"
-systemctl enable mysql &>>$LOGFILE
+systemctl enable mysql &>> $LOGFILE
 VALIDATE $? "Enabiling mysql"
-systemctl start mysql &>>$LOGFILE
+systemctl start mysql &>> $LOGFILE
 VALIDATE $? "starting mysql" 
-mysql_secure_installation --set-root-pass RoboShop@1 &>>$LOGFILE
+mysql_secure_installation --set-root-pass RoboShop@1 &>> $LOGFILE
 VALIDATE $? "mysql instalation and root password"
-mysql -uroot -pRoboShop@1 &>>$LOGFILE
+mysql -uroot -pRoboShop@1 &>> $LOGFILE
 VALIDATE $? "checking mysql password correct or not" 
