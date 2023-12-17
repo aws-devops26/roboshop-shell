@@ -20,12 +20,13 @@ VALIDATE()
 if [ $id -ne 0 ]
     then
     echo -e "$R error : please run this with root access $N "
+    exit 1
     else
     echo -e " $G u r root user $N"
 fi
 dnf module disable mysql -y  &>>$LOGFILE
 VALIDATE $? " disable mysql current version"
-cp /home/centos/roboshop-shell/mysql.repo /etc/yum.repos.d/mysql.repo &>>$LOGFILE
+cp /home/centos/roboshop-shell/mysql.repo  /etc/yum.repos.d/mysql.repo &>>$LOGFILE
 VALIDATE $? "copied my sql repo"
 dnf install mysql-community-server -y &>>$LOGFILE
 VALIDATE $? "installing my sql community server"
