@@ -51,10 +51,10 @@ cp /home/centos/roboshop-shell/user.service /etc/systemd/system/user.service &>>
 VALIDATE $? "copying user service file"
 systemctl daemon-reload &>>$LOGFILE
 VALIDATE $? " reloading demon"
-systemctl enable catalogue &>>$LOGFILE
-VALIDATE $? "Enabiling catalogue"
-systemctl start catalogue &>>$LOGFILE
-VALIDATE $? "starting catalogue" 
+systemctl enable user &>>$LOGFILE
+VALIDATE $? "Enabiling user"
+systemctl start user &>>$LOGFILE
+VALIDATE $? "starting user" 
 cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo &>>$LOGFILE
 VALIDATE $? "copying mongodb service file"
 dnf install mongodb-org-shell -y &>>$LOGFILE
