@@ -30,8 +30,10 @@ dnf module enable redis:remi-6.2 -y &>>$LOGFILE
 VALIDATE $? " enabiling redis"
 dnf install redis -y &>>$LOGFILE
 VALIDATE $? " installing erdis"
-sed -i 's/127.0.0.1/0.0.0.0/g '  /etc/redis/redis.conf /etc/redis.conf &>>$LOGFILE
+sed -i 's/127.0.0.1/0.0.0.0/g'  /etc/redis/redis.conf &>>$LOGFILE
 VALIDATE $? "allowing remote connections"
+systemctl restart redis &>>$LOGFILE
+VALIDATE $? "restarting redis"
 systemctl enable redis &>>$LOGFILE
 VALIDATE $? "Enabiling redis"
 systemctl start redis &>>$LOGFILE
