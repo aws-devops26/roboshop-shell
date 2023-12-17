@@ -36,27 +36,38 @@ if [ $? -ne 0 ]
 fi
  mkdir -p /app 
  VALIDATE $? "app directory created"
- curl -L -o /tmp/shipping.zip https://roboshop-builds.s3.amazonaws.com/shipping.zip &>>$LOGFILE
+ 
+ curl -L -o /tmp/shipping.zip https://roboshop-builds.s3.amazonaws.com/shipping.zip &>> $LOGFILE
  VALIDATE $? " downloading application code"
+ 
  cd /app
 VALIDATE $? "moving to app directory"
- mvn clean package &>>$LOGFILE
+
+mvn clean package  &>> $LOGFILE
 VALIDATE $? "installing dependencies"
- mv target/shipping-1.0.jar shipping.jar &>>$LOGFILE
+
+ mv target/shipping-1.0.jar shipping.jar &>> $LOGFILE
 VALIDATE $? "renaming jar file"
- cp /home/centos/roboshop-shell/shipping.service /etc/systemd/system/shipping.service &>>$LOGFILE
+
+ cp /home/centos/roboshop-shell/shipping.service /etc/systemd/system/shipping.service &>> $LOGFILE
  VALIDATE $? "copying shipping service file"
-systemctl daemon-reload &>>$LOGFILE
+
+systemctl daemon-reload &>> $LOGFILE
 VALIDATE $? " reloading demon"
-systemctl enable shipping &>>$LOGFILE
+
+systemctl enable shipping &>> $LOGFILE
 VALIDATE $? "Enabiling shipping"
-systemctl start shipping &>>$LOGFILE
+
+systemctl start shipping &>> $LOGFILE
 VALIDATE $? "starting shipping"
-dnf install mysql -y &>>$LOGFILE
+
+dnf install mysql -y &>> $LOGFILE
 VALIDATE $? "mysql i nstalled "
-mysql -h mysql.awssrivalli.online -uroot -pRoboShop@1 < /app/schema/shipping.sql &>>$LOGFILE 
+
+mysql -h mysql.awssrivalli.online -uroot -pRoboShop@1 < /app/schema/shipping.sql &>> $LOGFILE 
 VALIDATE $? "loading shipping data"
-systemctl restart shipping &>>$LOGFILE
+
+systemctl restart shipping &>> $LOGFILE
 VALIDATE $? " restart shipping"
 
 
