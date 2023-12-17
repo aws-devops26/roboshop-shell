@@ -45,13 +45,12 @@ cp /home/centos/roboshop-shell/catalogue.service/etc/systemd/system/catalogue.se
 VALIDATE $? "copying catalogue service file"
 systemctl daemon-reload $LOGFILE
 VALIDATE $? " reloading demon"
- systemctl enable catalogue &>> $LOGFILE
- VALIDATE $? "Enabiling catalogue"
- systemctl start catalogue &>> $LOGFILE
- VALIDATE $? "starting catalogue" 
- cp /home/centos/roboshop-shell/mongo.repo/etc/yum.repos.d/mongo.repo $LOGFILE
- VALIDATE $? "copying mongodb repo"
- dnf install mongodb-org-shell -y $LOGFILE
- VALIDATE $? " installing mongodb client"
- mongo --host awssrivalli.online </app/schema/catalogue.js $LOGFILE
-  VALIDATE $? "loading catalogue data into mongodb"
+systemctl enable catalogue &>> $LOGFILE
+VALIDATE $? "Enabiling catalogue"
+systemctl start catalogue &>> $LOGFILE
+VALIDATE $? "starting catalogue"  
+cp /home/centos/roboshop-shell/mongo.repo/etc/yum.repos.d/mongo.repo $LOGFILE
+VALIDATE $? "copying mongodb service file"
+dnf install mongodb-org-shell -y $LOGFILE
+VALIDATE $? "installing mongodb client"
+mongo --host mongodb.awssrivalli.online </app/schema/catalogue.js $LOGFILE
