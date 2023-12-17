@@ -47,7 +47,7 @@ unzip -o /tmp/catalogue.zip &>>$LOGFILE
 VALIDATE $? "unziping catalogue"
 npm install &>>$LOGFILE
 VALIDATE $? "installing dependencies"
-cp /home/centos/roboshop-shell/catalogue.service/etc/systemd/system/catalogue.service &>>$LOGFILE
+cp /home/centos/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service &>>$LOGFILE
 VALIDATE $? "copying catalogue service file"
 systemctl daemon-reload &>>$LOGFILE
 VALIDATE $? " reloading demon"
