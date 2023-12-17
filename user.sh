@@ -40,23 +40,24 @@ if [ $? -ne 0 ]
 fi
  mkdir -p /app 
  VALIDATE $? "app directory created"
- curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip &>>$LOGFILE
- VALIDATE $? "downloading catalogue application"
+ curl -L -o /tmp/user.zip https://roboshop-builds.s3.amazonaws.com/user.zip  &>>$LOGFILE
+ VALIDATE $? "downloading user application"
  cd /app 
-unzip -o /tmp/catalogue.zip &>>$LOGFILE
-VALIDATE $? "unziping catalogue"
+unzip -o /tmp/user.zip  &>>$LOGFILE
+VALIDATE $? "unziping user"
 npm install &>>$LOGFILE
 VALIDATE $? "installing dependencies"
-cp /home/centos/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service &>>$LOGFILE
-VALIDATE $? "copying catalogue service file"
+cp /home/centos/roboshop-shell/user.service /etc/systemd/system/user.service &>>$LOGFILE
+VALIDATE $? "copying user service file"
 systemctl daemon-reload &>>$LOGFILE
 VALIDATE $? " reloading demon"
 systemctl enable catalogue &>>$LOGFILE
 VALIDATE $? "Enabiling catalogue"
 systemctl start catalogue &>>$LOGFILE
-VALIDATE $? "starting catalogue"  
+VALIDATE $? "starting catalogue" 
 cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo &>>$LOGFILE
 VALIDATE $? "copying mongodb service file"
 dnf install mongodb-org-shell -y &>>$LOGFILE
 VALIDATE $? "installing mongodb client"
-mongo --host mongodb.awssrivalli.online </app/schema/catalogue.js &>>$LOGFILE
+mongo --host mongodb.awssrivalli.online </app/schema/user.js &>>$LOGFILE
+
