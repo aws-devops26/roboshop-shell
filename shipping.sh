@@ -43,7 +43,7 @@ fi
  cd /app
  VALIDATE $? "moving to app directory"
 
- mv clean package  &>> $LOGFILE
+ mvn  clean  package  &>> $LOGFILE
  VALIDATE $? "installing dependencies"
 
  mv target/shipping-1.0.jar shipping.jar &>> $LOGFILE
