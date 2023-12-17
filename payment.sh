@@ -38,20 +38,20 @@ fi
  mkdir -p /app 
  VALIDATE $? "app directory created"
 
- curl -L -o /tmp/payment.zip https://roboshop-builds.s3.amazonaws.com/payment.zip
+ curl -L -o /tmp/payment.zip https://roboshop-builds.s3.amazonaws.com/payment.zip &>> $LOGFILE
  VALIDATE $? "downloading payment"
 
  cd /app 
 
-unzip -o /tmp/user.zip  &>>$LOGFILE
+unzip -o /tmp/user.zip  &>> $LOGFILE
 VALIDATE $? "unziping payment"
 
 cd /app
 
-pip3.6 install -r requirements.txt
+pip3.6 install -r requirements.txt &>> $LOGFILE
 VALIDATE $? "installing dependencies"
 
-cp  /home/centos/roboshop-shell/payment.service /etc/systemd/system/payment.service
+cp  /home/centos/roboshop-shell/payment.service /etc/systemd/system/payment.service &>> $LOGFILE
 VALIDATE $? " copy payment services"
 
 systemctl daemon-reload &>> $LOGFILE
