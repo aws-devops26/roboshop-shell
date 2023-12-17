@@ -43,7 +43,7 @@ fi
 
  cd /app 
 
-unzip -o /tmp/user.zip  &>> $LOGFILE
+unzip -o /tmp/payment.zip  &>> $LOGFILE
 VALIDATE $? "unziping payment"
 
 cd /app
