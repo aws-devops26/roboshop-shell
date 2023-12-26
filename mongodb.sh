@@ -24,30 +24,15 @@ if [ $id -ne 0 ]
     else
     echo -e " $G u r root user $N"
 fi
-
-
-cp mongo.repo /etc/yum.repos.d/mongo.repo &>>$LOGFILE
-VALIDATE $?  "copied MONGODB"
-dnf install mongodb-org  &>>$LOGFILE
-
-for mongod in $@
-do
-    dnf install mongodb-org -y
- if [ $? -ne 0 ]
-    then
-    dnf install mongodb-org -y 
-    VALIDATE $? "installation of mongodb "
- else
-    echo -e "$Y mongodb  is already installed....$R SKIPPING $N"
- fi
-done
-
+cp mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOGFILE
+VALIDATE $?  "copied MONGODB repo"
+dnf install mongodb-org -y  &>> $LOGFILE
  VALIDATE $? "installed MONGODB" 
- systemctl enable mongod &>>$LOGFILE
+ systemctl enable mongod &>> $LOGFILE
  VALIDATE $? "Enabiling MONGODB"
- systemctl start mongod &>>$LOGFILE
+ systemctl start mongod  &>> LOGFILE
  VALIDATE $? "starting MONGODB" 
- sed -i ' s/127.0.0.1/0.0.0.0/g' /etc/mongod.conf &>>$LOGFILE
+ sed -i ' s/127.0.0.1/0.0.0.0/g' /etc/mongod.conf &>> $LOGFILE
  VALIDATE $? "remote access to mongodb"
- systemctl restart mongod &>>$LOGFILE
+ systemctl restart mongod &>> $LOGFILE
  VALIDATE $? "Restarting MONGODB" 
