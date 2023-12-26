@@ -11,10 +11,10 @@ VALIDATE()
 {
  if [ $1 -ne 0 ]
     then
-    echo  -e " $R $2.... FAILED $N"
+    echo  -e " $R $1.... FAILED $N"
     exit 1
     else
-    echo  -e " $G $1.... SUCCESS $N"
+    echo  -e " $G $2.... SUCCESS $N"
  fi
 }
 if [ $id -ne 0 ]
@@ -26,9 +26,9 @@ if [ $id -ne 0 ]
 fi
 
 
-cp mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOGFILE
-VALIDATE $? " copied MONGODB"
-dnf install mongodb-org  &>> $LOGFILE
+cp mongo.repo /etc/yum.repos.d/mongo.repo &>>$LOGFILE
+VALIDATE $?  "copied MONGODB"
+dnf install mongodb-org  &>>$LOGFILE
 
 for mongod in $@
 do
@@ -43,11 +43,11 @@ do
 done
 
  VALIDATE $? "installed MONGODB" 
- systemctl enable mongod &>> $LOGFILE
+ systemctl enable mongod &>>$LOGFILE
  VALIDATE $? "Enabiling MONGODB"
- systemctl start mongod &>> $LOGFILE
+ systemctl start mongod &>>$LOGFILE
  VALIDATE $? "starting MONGODB" 
- sed -i ' s/127.0.0.1/0.0.0.0/g' /etc/mongod.conf &>> $LOGFILE
+ sed -i ' s/127.0.0.1/0.0.0.0/g' /etc/mongod.conf &>>$LOGFILE
  VALIDATE $? "remote access to mongodb"
- systemctl restart mongod &>> $LOGFILE
+ systemctl restart mongod &>>$LOGFILE
  VALIDATE $? "Restarting MONGODB" 
