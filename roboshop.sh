@@ -1,7 +1,7 @@
 #!/bin/bash
 
 AMI=ami-03265a0778a880afb
-SG_ID=sg-070a9eb43e6d6e9eb #replace with your SG ID
+SG_ID=sg-070a9eb43e6d6e9eb #replace with your SG ID 
 INSTANCES=("mongodb" "redis" "mysql" "rabbitmq" "catalogue" "user" "cart" "shipping" "payment" "dispatch" "web")
 
 for i in "${INSTANCES[@]}"
