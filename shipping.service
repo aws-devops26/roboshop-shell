@@ -3,8 +3,8 @@ Description=Shipping Service
 
 [Service]
 User=roboshop
-Environment=CART_ENDPOINT=cart.awssrivalli.online:8080
-Environment=DB_HOST=mysql.awssrivalli.online
+Environment=CART_ENDPOINT=cart.web.awssrivalli.online:8080
+Environment=DB_HOST=mysql.web.awssrivalli.online
 ExecStart=/bin/java -jar /app/shipping.jar
 SyslogIdentifier=shipping
 
