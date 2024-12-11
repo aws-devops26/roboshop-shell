@@ -1,6 +1,6 @@
 #!/bin/bash
 AMI=ami-0b4f379183e5706b9 
-SG_ID=sg-0541e7f1344e449e2 #replace with your SG ID sg-05aeae68f59325217
+SG_ID=sg-0541e7f1344e449e2 #replace with your SG ID sg-0541e7f1344e449e2
 INSTANCES=("mongodb" "redis" "mysql" "rabbitmq" "catalogue" "user" "cart" "shipping" "payment" "dispatch" "web")
 ZONE_ID=Z025434420MOIOXIRVMIF # replace your zone ID Z025434420MOIOXIRVMIF
 DOMAIN_NAME="awssrivalli.online"
@@ -14,7 +14,7 @@ do
         INSTANCE_TYPE="t2.micro"
     fi
 
-    IP_ADDRESS=$(aws ec2 run-instances --image-id ami-0b4f379183e5706b9 --instance-type $INSTANCE_TYPE --security-group-ids sg-05aeae68f59325217 --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$i}]" --query 'Instances[0].PrivateIpAddress' --output text)
+    IP_ADDRESS=$(aws ec2 run-instances --image-id ami-0b4f379183e5706b9 --instance-type $INSTANCE_TYPE --security-group-ids sg-0541e7f1344e449e2 --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$i}]" --query 'Instances[0].PrivateIpAddress' --output text)
     echo "$i : $IP_ADDRESS"
 
     #create R53 record, make sure you delete existing record
