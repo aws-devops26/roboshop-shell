@@ -47,7 +47,7 @@ unzip -o /tmp/cart.zip  &>>$LOGFILE
 VALIDATE $? "unziping cart"
 npm install &>>$LOGFILE
 VALIDATE $? "installing dependencies"
-cp /home/centos/roboshop-shell/cart.service /etc/systemd/system/cart.service &>>$LOGFILE
+cp /home/centos//cart.service /etc/systemd/system/cart.service &>>$LOGFILE
 VALIDATE $? "copying cart service file"
 systemctl daemon-reload &>>$LOGFILE
 VALIDATE $? " reloading demon"
