@@ -1,7 +1,7 @@
 #!/bin/bash
 AMI=ami-0b4f379183e5706b9  #ami-0b4f379183e5706b9
 SG_ID=sg-0e94719a08dddaf21  #replace with your SG ID sg-0541e7f1344e449e2
-INSTANCES=("mongodb" "redis" "mysql" "rabbitmq" "catalogue" "user" "cart" "shipping" "payment" "dispa # replace your zone ID Z08602322WCPR9WJ7HM8UZ
+INSTANCES=("mongodb" "redis" "mysql" "rabbitmq" "catalogue" "user" "cart" "shipping" "payment" "dispatch" "web") # replace your zone ID Z08602322WCPR9WJ7HM8UZ
 ZONE_ID=Z08602322WCPR9WJ7HM8U 
 DOMAIN_NAME="srivalli.shop"
 
