@@ -2,7 +2,7 @@
 AMI=ami-0b4f379183e5706b9  #ami-0b4f379183e5706b9
 SG_ID=sg-0e94719a08dddaf21  #replace with your SG ID sg-0541e7f1344e449e2
 INSTANCES=("mongodb" "redis" "mysql" "rabbitmq" "catalogue" "user" "cart" "shipping" "payment" "dispatch" "web") # replace your zone ID Z08602322WCPR9WJ7HM8UZ
-ZONE_ID=Z08602322WCPR9WJ7HM8U 
+ZONE_ID=Z09268031N95BFUT9OPZ7  #route 53 srivalli.shop zone id
 DOMAIN_NAME="srivalli.shop"
 
 for i in "${INSTANCES[@]}"
